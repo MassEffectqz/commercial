@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Commercial Proposal | .dev group</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            color: #000;
+            line-height: 1.5;
+            margin: 0;
+            padding: 0;
+            background: #fff;
+        }
+
+        .layout {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        .sidebar {
+            width: 260px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100vh;
+            background: #f5f5f5;
+            border-right: 1px solid #e0e0e0;
+            padding: 30px 0;
+            overflow-y: auto;
+        }
+
+        .sidebar-logo {
+            padding: 0 20px 20px;
+            border-bottom: 1px solid #e0e0e0;
+            margin-bottom: 20px;
+        }
+
+        .sidebar-logo img {
+            width: 100%;
+            max-width: 180px;
+            height: auto;
+            display: block;
+        }
+
+        .nav-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .nav-list li {
+            margin: 0;
+        }
+
+        .nav-list a {
+            display: block;
+            padding: 10px 20px;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: #333;
+            text-decoration: none;
+            border-left: 3px solid transparent;
+            transition: all 0.2s ease;
+        }
+
+        .nav-list a:hover {
+            background: #e8e8e8;
+            border-left-color: #000;
+        }
+
+        .nav-list a.active {
+            background: #e0e0e0;
+            border-left-color: #000;
+            font-weight: 700;
+        }
+
+        .main-content {
+            padding: 60px 40px;
+            max-width: 900px;
+            margin-left: calc(260px + (100vw - 260px - 900px) / 2);
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 60px;
+            border-bottom: 1px solid #000;
+            padding-bottom: 20px;
+        }
+
+        .header-logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .header-logo img {
+            height: 60px;
+            width: auto;
+        }
+
+        .company-name {
+            font-size: 18px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .meta-info {
+            font-size: 12px;
+            text-align: right;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        h1 {
+            font-size: 24px;
+            font-weight: 400;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin: 40px 0 40px;
+        }
+
+        h2 {
+            font-size: 14px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 50px;
+            margin-bottom: 20px;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 10px;
+            scroll-margin-top: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 40px;
+        }
+
+        th {
+            text-align: left;
+            font-size: 11px;
+            text-transform: uppercase;
+            color: #666;
+            padding: 10px 0;
+            border-bottom: 1px solid #000;
+        }
+
+        td {
+            padding: 12px 0;
+            font-size: 14px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .text-right { text-align: right; }
+
+        .tech-list {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-bottom: 40px;
+        }
+
+        .tech-item {
+            font-size: 13px;
+            border-left: 1px solid #000;
+            padding-left: 15px;
+        }
+
+        .tech-item span {
+            display: block;
+            font-weight: 700;
+            font-size: 11px;
+            text-transform: uppercase;
+            color: #666;
+        }
+
+        .total-price {
+            margin: 60px 0;
+            padding: 40px 0;
+            border-top: 2px solid #000;
+            border-bottom: 2px solid #000;
+            text-align: center;
+        }
+
+        .total-price span {
+            display: block;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+        }
+
+        .total-price strong {
+            font-size: 32px;
+            font-weight: 700;
+        }
+
+        .payment-option {
+            margin-bottom: 40px;
+        }
+
+        .payment-option h3 {
+            font-size: 13px;
+            text-transform: uppercase;
+            margin-bottom: 15px;
+        }
+
+        .trade-in-table {
+            background: #f9f9f9;
+            padding: 20px;
+            font-size: 13px;
+        }
+
+        footer {
+            margin-top: 80px;
+            font-size: 11px;
+            color: #999;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+        }
+
+        ul {
+            font-size: 14px;
+            line-height: 2;
+            margin: 20px 0 40px;
+            padding-left: 20px;
+        }
+
+        @media (max-width: 768px) {
+            .sidebar {
+                display: none;
+            }
+
+            .main-content {
+                margin-left: 0;
+                padding: 40px 20px;
+            }
+
+            .tech-list {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="layout">
+    <aside class="sidebar">
+        <div class="sidebar-logo">
+            <img src="logo.png" alt=".dev group logo">
+        </div>
+        <nav>
+            <ul class="nav-list">
+                <li><a href="#evaluation">Объем работ</a></li>
+                <li><a href="#client">Клиентская часть</a></li>
+                <li><a href="#admin">Админ-панель</a></li>
+                <li><a href="#tech">Технические особенности</a></li>
+                <li><a href="#security">Безопасность</a></li>
+                <li><a href="#performance">Производительность</a></li>
+                <li><a href="#testing">Тестирование</a></li>
+                <li><a href="#files">Работа с файлами</a></li>
+                <li><a href="#hooks">React хуки</a></li>
+                <li><a href="#api">API Архитектура</a></li>
+                <li><a href="#business">Ценность для бизнеса</a></li>
+                <li><a href="#comparison">Сравнение</a></li>
+                <li><a href="#timeline">Сроки</a></li>
+                <li><a href="#included">Что входит</a></li>
+                <li><a href="#cost">Стоимость</a></li>
+                <li><a href="#payment">Оплата</a></li>
+            </ul>
+        </nav>
+    </aside>
+
+    <main class="main-content">
+        <header>
+            <div class="header-logo">
+                <img src="logo.png" alt=".dev group">
+                <!-- <span class="company-name">.dev group</span> -->
+            </div>
+            <div class="meta-info">
+                Копылов Данила Андреевич<br>
+                ИНН 343536065087<br>
+                +7 995 412 09 66
+            </div>
+        </header>
+
+        <div class="meta-info" style="text-align: left;">
+            Кому: 1000fps<br>
+            Дата: 15.03.2026
+        </div>
+
+        <h1>Разработка интернет-магазина</h1>
+
+        <h2 id="evaluation">Объем работ и оценка</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Модуль</th>
+                    <th>Сложность</th>
+                    <th class="text-right">Часы</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>Каталог товаров</td><td>Средняя</td><td class="text-right">35</td></tr>
+                <tr><td>Карточка товара</td><td>Средняя</td><td class="text-right">25</td></tr>
+                <tr><td>Корзина + checkout</td><td>Высокая</td><td class="text-right">45</td></tr>
+                <tr><td>Админ-панель</td><td>Высокая</td><td class="text-right">70</td></tr>
+                <tr><td>Импорт/экспорт</td><td>Средняя</td><td class="text-right">20</td></tr>
+                <tr><td>История цен</td><td>Высокая</td><td class="text-right">35</td></tr>
+                <tr><td>Chrome extension</td><td>Очень высокая</td><td class="text-right">60</td></tr>
+                <tr><td>Парсер WB</td><td>Очень высокая</td><td class="text-right">45</td></tr>
+                <tr><td>SEO оптимизация</td><td>Средняя</td><td class="text-right">25</td></tr>
+                <tr><td>Аналитика</td><td>Высокая</td><td class="text-right">20</td></tr>
+                <tr><td><strong>Итого</strong></td><td></td><td class="text-right"><strong>380</strong></td></tr>
+            </tbody>
+        </table>
+
+        <h2 id="client">Клиентская часть (витрина)</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Компонент</th>
+                    <th>Описание</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>Главная страница</td><td>Hero-секция, избранные товары, адаптивный дизайн</td></tr>
+                <tr><td>Каталог товаров</td><td>Умный поиск, фильтрация, сортировка, пагинация</td></tr>
+                <tr><td>Карточка товара</td><td>Галерея, характеристики, наличие, рекомендации</td></tr>
+                <tr><td>Корзина</td><td>Открывающаяся панель, автопересчёт, изменение количества</td></tr>
+                <tr><td>Оформление заказа</td><td>Пошаговое оформление, доставка, оплата, валидация</td></tr>
+                <tr><td>Личный кабинет</td><td>Профиль, история заказов, избранное, JWT-аутентификация</td></tr>
+                <tr><td>Конфигуратор ПК</td><td>Пошаговая сборка, проверка совместимости</td></tr>
+                <tr><td>Услуги</td><td>Сборка, апгрейд, ремонт, консультации</td></tr>
+                <tr><td>FAQ</td><td>База знаний, гарантия, доставка, возврат</td></tr>
+                <tr><td>Контакты</td><td>Интерактивная карта, форма обратной связи</td></tr>
+            </tbody>
+        </table>
+
+        <h2 id="admin">Административная панель</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Модуль</th>
+                    <th>Функционал</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>Управление товарами</td><td>CRUD, галерея до 10 фото, характеристики, импорт/экспорт CSV/JSON</td></tr>
+                <tr><td>Категории</td><td>Древовидная структура (3 уровня), SEO-теги, slug</td></tr>
+                <tr><td>Заказы</td><td>6 статусов, фильтрация, экспорт в CSV/Excel</td></tr>
+                <tr><td>Аналитика</td><td>Выручка, конверсия, топ товаров, графики продаж</td></tr>
+                <tr><td>Галерея</td><td>Загрузка, организация по папкам, оптимизация WebP</td></tr>
+                <tr><td>Настройки сайта</td><td>Контакты, соцсети, SEO, интеграции</td></tr>
+                <tr><td>Wildberries Парсер</td><td>Автообновление цен, история изменений, уведомления</td></tr>
+                <tr><td>Пользователи</td><td>Роли (админ/менеджер/клиент), блокировка</td></tr>
+            </tbody>
+        </table>
+
+        <h2 id="tech">Технические особенности</h2>
+        <div class="tech-list">
+            <div class="tech-item"><span>Frontend</span>React 19, TypeScript, SSR</div>
+            <div class="tech-item"><span>Backend</span>Node.js, Express, PostgreSQL</div>
+            <div class="tech-item"><span>Security</span>JWT, bcrypt, CSRF, Rate Limiting, HTTPS</div>
+            <div class="tech-item"><span>Performance</span>Кэширование, Lazy Loading, Code Splitting, Gzip</div>
+            <div class="tech-item"><span>SEO</span>SSR, Schema.org, Sitemap.xml, Robots.txt, Open Graph</div>
+            <div class="tech-item"><span>DevOps</span>Docker, CI/CD, миграции БД, Nginx</div>
+        </div>
+
+        <h2 id="security">Безопасность</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Механизм</th>
+                    <th>Описание</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>Helmet.js Security Headers</td><td>CSP, X-Frame-Options, HSTS, X-Content-Type-Options</td></tr>
+                <tr><td>SQL Injection защита</td><td>Параметризованные запросы, ORM валидация</td></tr>
+                <tr><td>XSS защита</td><td>Экранирование вывода, Content Security Policy</td></tr>
+                <tr><td>Валидация данных</td><td>Все входные данные проверяются на стороне сервера</td></tr>
+            </tbody>
+        </table>
+
+        <h2 id="performance">Производительность</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Оптимизация</th>
+                    <th>Реализация</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>Sharp оптимизация</td><td>4 размера изображений, WebP, 80–95% качество</td></tr>
+                <tr><td>Code Splitting</td><td>5 чанков: React, Icons, Motion, AI, Main</td></tr>
+                <tr><td>Debounced поиск</td><td>Задержка ввода для снижения нагрузки</td></tr>
+                <tr><td>Мемоизация</td><td>useMemo, useCallback для критичных компонентов</td></tr>
+            </tbody>
+        </table>
+
+        <h2 id="testing">Тестирование</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Тип тестов</th>
+                    <th>Инструмент</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>Unit тесты</td><td>Vitest фреймворк</td></tr>
+                <tr><td>API тесты</td><td>Supertest + Vitest</td></tr>
+                <tr><td>UI тесты</td><td>React Testing Library</td></tr>
+                <tr><td>Coverage report</td><td>Отчёт по покрытию кода</td></tr>
+            </tbody>
+        </table>
+
+        <h2 id="files">Работа с файлами</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Компонент</th>
+                    <th>Функционал</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>Multer</td><td>Загрузка файлов, 5MB лимит, фильтрация типов</td></tr>
+                <tr><td>Sharp</td><td>Конвертация, ресайз, генерация превью</td></tr>
+                <tr><td>Хранение</td><td>Локальное / S3-совместимое</td></tr>
+            </tbody>
+        </table>
+
+        <h2 id="hooks">Кастомные хуки React</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Хук</th>
+                    <th>Назначение</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>useAuth</td><td>Управление аутентификацией</td></tr>
+                <tr><td>useCart</td><td>Логика корзины</td></tr>
+                <tr><td>useProducts</td><td>Загрузка и фильтрация товаров</td></tr>
+                <tr><td>useOrders</td><td>История заказов</td></tr>
+                <tr><td>useFavorites</td><td>Избранные товары</td></tr>
+                <tr><td>useSearch</td><td>Поиск с debounce</td></tr>
+                <tr><td>usePagination</td><td>Пагинация списков</td></tr>
+                <tr><td>useModal</td><td>Управление модальными окнами</td></tr>
+                <tr><td>useToast</td><td>Система уведомлений</td></tr>
+                <tr><td>useApi</td><td>Единый API-клиент</td></tr>
+            </tbody>
+        </table>
+
+        <h2 id="api">API Архитектура</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Аспект</th>
+                    <th>Реализация</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>Стиль</td><td>RESTful, версионирование (/api/v1/...)</td></tr>
+                <tr><td>Пагинация</td><td>?page=1&amp;limit=20, totalCount в ответе</td></tr>
+                <tr><td>Формат ответов</td><td>Единый формат: { success, data, error }</td></tr>
+                <tr><td>HTTP коды</td><td>200/201/400/401/403/404/500</td></tr>
+            </tbody>
+        </table>
+
+        <h2>Адаптивность и доступность</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Устройство</th>
+                    <th>Брейкпоинт</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>Смартфоны</td><td>320px+</td></tr>
+                <tr><td>Планшеты</td><td>768px+</td></tr>
+                <tr><td>Ноутбуки</td><td>1024px+</td></tr>
+                <tr><td>Десктопы</td><td>1440px+</td></tr>
+            </tbody>
+        </table>
+        <p style="font-size: 13px; margin-top: 20px;"><strong>Дополнительно:</strong> Mobile First, ARIA-атрибуты, управление с клавиатуры, контрастность WCAG 2.1</p>
+
+        <h2 id="business">Ценность для бизнеса</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Преимущество</th>
+                    <th>Выгода</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>Автообновление цен</td><td>Экономия 10+ часов в неделю</td></tr>
+                <tr><td>Удобная корзина</td><td>Меньше брошенных заказов</td></tr>
+                <tr><td>Быстрое оформление</td><td>3 шага до покупки</td></tr>
+                <tr><td>Аналитика продаж</td><td>Понимание трендов и фокус на популярном</td></tr>
+                <tr><td>PC Builder</td><td>Увеличение среднего чека</td></tr>
+                <tr><td>SEO оптимизация</td><td>Органический трафик из поисковиков</td></tr>
+                <tr><td>Масштабируемость</td><td>Готов к росту 1000+ товаров</td></tr>
+            </tbody>
+        </table>
+
+        <h2 id="comparison">Сравнение с конструкторами</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Критерий</th>
+                    <th>Tilda</th>
+                    <th>InSales</th>
+                    <th>Bitrix</th>
+                    <th>Наше решение</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>Владение кодом</td><td>Нет</td><td>Нет</td><td>Частично</td><td><strong>Полное</strong></td></tr>
+                <tr><td>Переносимость</td><td>Нет</td><td>Нет</td><td>Сложно</td><td><strong>Полная</strong></td></tr>
+                <tr><td>Кастомизация</td><td>Ограничена</td><td>Ограничена</td><td>Сложно</td><td><strong>Любая</strong></td></tr>
+                <tr><td>WB Парсер</td><td>Нет</td><td>Нет</td><td>Платно</td><td><strong>Включено</strong></td></tr>
+                <tr><td>PC Builder</td><td>Нет</td><td>Нет</td><td>Платно</td><td><strong>Включено</strong></td></tr>
+                <tr><td>Скорость загрузки</td><td>Средняя</td><td>Средняя</td><td>Низкая</td><td><strong>Высокая</strong></td></tr>
+                <tr><td>SEO возможности</td><td>Базовые</td><td>Базовые</td><td>Полные</td><td><strong>Полные + SSR</strong></td></tr>
+                <tr><td>Ежемесячные платежи</td><td>750–1500 ₽</td><td>2900–7900 ₽</td><td>0 ₽ (лицензия ~25 000 ₽)</td><td><strong>~500–1000 ₽</strong> (хостинг)</td></tr>
+            </tbody>
+        </table>
+
+        <h2>Почему наше решение выгоднее</h2>
+        <ul>
+            <li><strong>Нет ежемесячных платежей</strong> — конструкторы требуют постоянную оплату</li>
+            <li><strong>Полная независимость</strong> — код принадлежит вам, нет привязки к платформе</li>
+            <li><strong>Уникальный функционал</strong> — WB Парсер и PC Builder только в нашем решении</li>
+            <li><strong>Максимальная производительность</strong> — оптимизация под ваши задачи</li>
+            <li><strong>Без ограничений платформы</strong> — любые интеграции и доработки</li>
+            <li><strong>Прозрачная безопасность</strong> — полный контроль над данными</li>
+            <li><strong>Долгосрочная экономия</strong> — окупается за 2–3 года</li>
+        </ul>
+
+        <h2>Примеры экономии (ROI)</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Статья</th>
+                    <th class="text-right">Сумма</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>WB Парсер (экономия в год)</td><td class="text-right"><strong>+52 000 ₽/год</strong></td></tr>
+                <tr><td>Конструкторы (5 лет, InSales Premium)</td><td class="text-right"><strong>~137 400 ₽</strong></td></tr>
+                <tr><td>Итого выгода за 5 лет</td><td class="text-right"><strong style="font-size: 16px;">+147 400 ₽</strong></td></tr>
+            </tbody>
+        </table>
+        <p style="font-size: 12px; color: #666; margin-top: -20px; margin-bottom: 40px;">* Расчёт для InSales Premium (2900 ₽/мес × 5 лет = 174 000 ₽) + экономия на парсере (52 000 ₽/год × 5 лет = 260 000 ₽) − разработка (250 000 ₽) = 184 000 ₽. Консервативная оценка: +147 400 ₽.</p>
+
+        <h2 id="timeline">Сроки реализации</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Этап</th>
+                    <th>Срок</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>Развёртывание на сервере</td><td>1–2 дня</td></tr>
+                <tr><td>Настройка и кастомизация</td><td>2–3 дня</td></tr>
+                <tr><td>Заполнение товарами</td><td>1–2 дня</td></tr>
+                <tr><td>Обучение персонала</td><td>1 день</td></tr>
+                <tr><td><strong>Итого</strong></td><td><strong>5–8 дней</strong></td></tr>
+            </tbody>
+        </table>
+
+        <h2 id="included">Что входит в стоимость</h2>
+        <ul>
+            <li>Полный исходный код (Frontend + Backend)</li>
+            <li>База данных с миграциями</li>
+            <li>Docker конфигурация для развёртывания</li>
+            <li>Документация по запуску</li>
+            <li>Обучение работе с админ-панелью</li>
+            <li>Гарантия 30 дней на багфикс</li>
+            <li>SEO базовая настройка</li>
+            <li>Тестовые данные для демонстрации</li>
+            <li><strong>Поддержка 3 месяца бесплатно</strong></li>
+        </ul>
+        <p style="font-size: 13px; color: #666; margin-top: -20px; margin-bottom: 40px;"><em>Дополнительный функционал обсуждается отдельно</em></p>
+
+        <h2 id="cost">Стоимость владения</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Параметр</th>
+                    <th class="text-right">Стоимость</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>Разработка</td><td class="text-right">250 000 ₽ (единоразово)</td></tr>
+                <tr><td>Хостинг</td><td class="text-right">~500–1000 ₽/мес</td></tr>
+                <tr><td>Домен</td><td class="text-right">~200 ₽/год</td></tr>
+                <tr><td>SSL сертификат</td><td class="text-right">Бесплатно (Let's Encrypt)</td></tr>
+                <tr><td>Поддержка</td><td class="text-right">По договорённости</td></tr>
+            </tbody>
+        </table>
+
+        <div class="total-price">
+            <span>Стоимость проекта</span>
+            <strong>250 000 ₽</strong>
+        </div>
+
+        <h2 id="payment">Условия оплаты</h2>
+
+        <div class="payment-option">
+            <h3>Вариант 1. Прямой расчет</h3>
+            <p style="font-size: 14px;">Безналичный перевод или наличные. Полная сумма: 250 000 ₽.</p>
+        </div>
+
+        <div class="payment-option">
+            <h3>Вариант 2. Trade-In (Обмен оборудования)</h3>
+            <div class="trade-in-table">
+                <p><strong>Принимаемое оборудование:</strong> i5-12400F / MSI B760-P / RTX 3060 Ti / 16GB RAM</p>
+                <p><strong>Целевая сборка (в счет оплаты):</strong></p>
+                <ul style="margin: 0; padding-left: 15px; line-height: 1.8;">
+                    <li>Intel Core i7-14700K (20 ядер)</li>
+                    <li>NVIDIA GeForce RTX 5070 Ti (16GB)</li>
+                    <li>MSI MAG B760 TOMAHAWK DDR5</li>
+                    <li>32 ГБ G.Skill Trident Z5 6000MHz</li>
+                    <li>LIAN LI GALAHAD II LCD 360</li>
+                    <li>850W ATX 3.0 Gold</li>
+                    <li>2 TB M.2 Samsung 990 Pro</li>
+                </ul>
+            </div>
+        </div>
+
+        <footer>
+            .dev group / 2026 / Все права защищены<br>
+            Готов к демонстрации работы сайта в любое удобное время!<br>
+            +7 995 412 09 66
+        </footer>
+    </main>
+</div>
+
+<script>
+    const sections = document.querySelectorAll('h2[id]');
+    const navLinks = document.querySelectorAll('.nav-list a');
+
+    function updateActiveLink() {
+        let current = '';
+        sections.forEach(section => {
+            const sectionTop = section.offsetTop;
+            if (scrollY >= sectionTop - 100) {
+                current = section.getAttribute('id');
+            }
+        });
+
+        navLinks.forEach(link => {
+            link.classList.remove('active');
+            if (link.getAttribute('href') === '#' + current) {
+                link.classList.add('active');
+            }
+        });
+    }
+
+    window.addEventListener('scroll', updateActiveLink);
+    updateActiveLink();
+</script>
+
+</body>
+</html>
